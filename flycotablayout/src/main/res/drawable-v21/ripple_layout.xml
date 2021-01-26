@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ripple xmlns:android="http://schemas.android.com/apk/res/android"
-    android:color="#FF999999">
+    android:color="#FF999999"><!--水波纹效果颜色-->
+    <!--新增点击水波纹效果-->
     <item>
         <shape android:shape="rectangle">
-            <solid android:color="#FFFFFF" />
+            <solid android:color="#FFFFFF" /><!--无效果时颜色-->
             <corners android:radius="1dp" />
         </shape>
     </item>

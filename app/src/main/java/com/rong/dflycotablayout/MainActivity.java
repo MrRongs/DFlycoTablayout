@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
         viewPager.setAdapter(mAdapter);
         viewPager.setOffscreenPageLimit(2);
 
-        tab.setTabData(mTabEntities);
+        tab.setTabData(mTabEntities,true);
         tab.setOnTabSelectListener(new OnTabSelectListener() {
             @Override
             public void onTabSelect(int position) {

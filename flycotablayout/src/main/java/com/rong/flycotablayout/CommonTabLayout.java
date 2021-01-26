@@ -11,6 +11,7 @@ import android.graphics.Path;
 import android.graphics.Rect;
 import android.graphics.drawable.AnimationDrawable;
 import android.graphics.drawable.GradientDrawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.v4.app.Fragment;
@@ -104,6 +105,7 @@ public class CommonTabLayout extends FrameLayout implements ValueAnimator.Animat
     private float mIconMargin;
 
     private int mHeight;
+    private boolean isShowRipple;
 
     /** anim */
     private ValueAnimator mValueAnimator;
@@ -194,11 +196,12 @@ public class CommonTabLayout extends FrameLayout implements ValueAnimator.Animat
         ta.recycle();
     }
 
-    public void setTabData(ArrayList<CustomTabEntity> tabEntitys) {
+    public void setTabData(ArrayList<CustomTabEntity> tabEntitys,boolean isShowRipple) {
         if (tabEntitys == null || tabEntitys.size() == 0) {
             throw new IllegalStateException("TabEntitys can not be NULL or EMPTY !");
         }
 
+        this.isShowRipple = isShowRipple;
         this.mTabEntitys.clear();
         this.mTabEntitys.addAll(tabEntitys);
 
@@ -206,9 +209,9 @@ public class CommonTabLayout extends FrameLayout implements ValueAnimator.Animat
     }
 
     /** 关联数据支持同时切换fragments */
-    public void setTabData(ArrayList<CustomTabEntity> tabEntitys, FragmentActivity fa, int containerViewId, ArrayList<Fragment> fragments) {
+    public void setTabData(ArrayList<CustomTabEntity> tabEntitys, FragmentActivity fa, int containerViewId, ArrayList<Fragment> fragments,boolean isShowRipple) {
         mFragmentChangeManager = new FragmentChangeManager(fa.getSupportFragmentManager(), containerViewId, fragments);
-        setTabData(tabEntitys);
+        setTabData(tabEntitys,isShowRipple);
     }
 
     /** 更新数据 */
@@ -227,6 +230,11 @@ public class CommonTabLayout extends FrameLayout implements ValueAnimator.Animat
                 tabView = View.inflate(mContext, R.layout.layout_tab_top, null);
             }
 
+            if(isShowRipple){
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                    tabView.setBackground(getResources().getDrawable(R.drawable.ripple_layout));
+                }
+            }
             tabView.setTag(i);
             addTab(i, tabView);
         }
