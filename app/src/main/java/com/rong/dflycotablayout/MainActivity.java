@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
     private ArrayList<CustomTabEntity> mTabEntities = new ArrayList<>();
     private ArrayList<Fragment> mFragments = new ArrayList<>();
     private MyPagerAdapter mAdapter;
-    private String[] mTitles = {"首页", "工具箱", "我"};
+    private String[] mTitles = {"首页", "工具箱", "我的"};
     private int[] mIconUnselectIds = {R.mipmap.ic_home_nor, R.mipmap.ic_tool_nor, R.mipmap.ic_mine_nor};
     private int[] mIconSelectIds = {R.drawable.anima_home, R.drawable.anima_util, R.drawable.anima_mine};
 
